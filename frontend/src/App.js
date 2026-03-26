@@ -78,7 +78,7 @@ function App() {
       if (user && user._id && !user.isAdmin) {
         try {
           const res = await axios.get(
-            `http://localhost:5000/api/orders/user/${user._id}`,
+            `https://trendy-store.onrender.com/api/orders/user/${user._id}`,
           );
           setUserOrders(res.data);
         } catch (err) {
@@ -94,21 +94,21 @@ function App() {
   // --- 3. Helper Functions ---
   const fetchProducts = () => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://trendy-store.onrender.com/api/products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.log("Error fetching products:", err));
   };
 
   const fetchOrders = () => {
     axios
-      .get("http://localhost:5000/api/orders/all")
+      .get("https://trendy-store.onrender.com/api/orders/all")
       .then((res) => setAllOrders(res.data))
       .catch((err) => console.log("Error fetching orders:", err));
   };
 
   const updateStatus = async (id, newStatus) => {
     try {
-      await axios.patch(`http://localhost:5000/api/orders/${id}/status`, {
+      await axios.patch(`https://trendy-store.onrender.com/api/orders/${id}/status`, {
         status: newStatus,
       });
       fetchOrders();
@@ -120,7 +120,7 @@ function App() {
   const deleteOrder = async (id) => {
     if (window.confirm("Are you sure you want to delete this order?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/orders/${id}`);
+        await axios.delete(`https://trendy-store.onrender.com/api/orders/${id}`);
         fetchOrders();
       } catch (err) {
         alert("Unable to delete order.");
@@ -135,7 +135,7 @@ function App() {
       authMode === "login" ? "/api/auth/login" : "/api/auth/register";
     try {
       const res = await axios.post(
-        `http://localhost:5000${endpoint}`,
+        `https://trendy-store.onrender.com${endpoint}`,
         formData,
       );
       if (authMode === "login") {
@@ -167,7 +167,7 @@ function App() {
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/verify", {
+      const res = await axios.post("https://trendy-store.onrender.com/api/auth/verify", {
         email: formData.email,
         otp,
       });
@@ -183,7 +183,7 @@ function App() {
   const handleResendOTP = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/resend-otp",
+        "https://trendy-store.onrender.com/api/auth/resend-otp",
         {
           email: formData.email,
         },
@@ -240,7 +240,7 @@ function App() {
     console.log("Adding Product with inventory:", newProduct);
 
     axios
-      .post("http://localhost:5000/api/products/add", newProduct)
+      .post("https://trendy-store.onrender.com/api/products/add", newProduct)
       .then(() => {
         alert("Product Added Successfully!");
 
@@ -297,7 +297,7 @@ function App() {
 
     axios
       .put(
-        `http://localhost:5000/api/products/${editingProduct._id}`,
+        `https://trendy-store.onrender.com/api/products/${editingProduct._id}`,
         updatedData,
       )
       .then(() => {
@@ -320,7 +320,7 @@ function App() {
   const deleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`https://trendy-store.onrender.com/api/products/${id}`);
         alert("Product deleted successfully!");
         fetchProducts();
       } catch (err) {
@@ -391,7 +391,7 @@ function App() {
       console.log("යවන දත්ත (Order Data):", orderData);
       // Backend එකට ඕඩර් එක යැවීම
       const res = await axios.post(
-        "http://localhost:5000/api/orders/add",
+        "https://trendy-store.onrender.com/api/orders/add",
         orderData,
       );
 
