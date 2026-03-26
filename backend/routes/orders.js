@@ -4,6 +4,13 @@ const Order = require("../models/Order");
 const Product = require("../models/Product");
 const User = require("../models/User");
 const nodemailer = require("nodemailer");
+const sendEmail = require('../utils/sendEmail');
+
+await sendEmail({
+    email: user.email,
+    subject: 'Trendy Store OTP Verification',
+    message: `<h1>Your OTP is ${otp}</h1>` // මෙතන HTML tags පාවිච්චි කරන්න පුළුවන්
+});
 
 // --- Email යවන්න ඕනේ විස්තර (Transporter) සකස් කිරීම ---
 const transporter = nodemailer.createTransport({
