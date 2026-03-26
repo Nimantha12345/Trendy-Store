@@ -7,11 +7,16 @@ const nodemailer = require("nodemailer");
 
 // --- 1. Nodemailer Transporter ---
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // 👈 මෙය පරීක්ෂා කරන්න (App Password එක වැරදි නම් ඊමේල් යන්නේ නැත)
-  },
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // Port 465 සඳහා true විය යුතුයි
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false // මේක දැමීමෙන් connection එක block වීම වැළකෙයි
+    }
 });
 
 // --- 2. Register ---
