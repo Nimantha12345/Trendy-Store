@@ -1,6 +1,5 @@
 const sendEmail = async (options) => {
     try {
-        // කිසිම Package එකක් නැතුව කෙලින්ම Resend API එකට කතා කිරීම
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
@@ -21,7 +20,7 @@ const sendEmail = async (options) => {
             throw new Error("Email sending failed at API");
         }
 
-        console.log("Email sent successfully via Resend Fetch API!");
+        console.log("Email sent successfully via Fetch!");
     } catch (error) {
         console.error("Email Fetch Error:", error);
         throw new Error("Email sending failed");
