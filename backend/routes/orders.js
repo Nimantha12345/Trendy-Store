@@ -7,16 +7,16 @@ const nodemailer = require("nodemailer");
 
 // --- Email යවන්න ඕනේ විස්තර (Transporter) සකස් කිරීම ---
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // Port 465 සඳහා true විය යුතුයි
+    service: 'gmail', // කෙලින්ම service එක දෙන්න
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    tls: {
-        rejectUnauthorized: false // මේක දැමීමෙන් connection එක block වීම වැළකෙයි
-    }
+    // මේ කොටස අනිවාර්යයෙන්ම දාන්න
+    connectionTimeout: 10000, // තත්පර 10ක් බලන් ඉන්න
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+    pool: true // Connection එක දිගටම තියාගන්න
 });
 
 // --- Email එක යවන Function එක ---
