@@ -4,6 +4,13 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const sendEmail = require("../utils/sendEmail");
+
+await sendEmail({
+    email: user.email,
+    subject: 'Trendy Store OTP Verification',
+    message: `<h1>Your OTP is ${otp}</h1>` // මෙතන HTML tags පාවිච්චි කරන්න පුළුවන්
+});
 
 // --- 1. Nodemailer Transporter ---
 const transporter = nodemailer.createTransport({
